@@ -7,20 +7,16 @@ import dotenv from 'dotenv';
 dotenv.config();
 const PORT = process.env.PORT || 5000;
 
-// Create HTTP server
 const httpServer = createServer(app);
 
-// Initialize Socket.io server
 const io = new Server(httpServer, {
   cors: {
-    origin: "*",  // Configure this as per your security needs
+    origin: "*", 
   },
 });
 
-// Setup socket.io connection handling
-socketService(io);
 
-// Start the server
+socketService(io);
 httpServer.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

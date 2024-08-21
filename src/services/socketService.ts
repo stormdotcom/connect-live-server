@@ -18,7 +18,9 @@ const socketService = (io: Server) => {
 
     socket.on('signal', (data: SignalData) => {
       const { sessionId, type, sdp, candidate } = data;
-      console.log('sessionId:', sessionId);
+      console.log('Received signal:', { sessionId});
+
+      // Broadcast the signaling data to other clients in the session
       socket.to(sessionId).emit('signal', {
         type,
         sdp,
@@ -32,5 +34,4 @@ const socketService = (io: Server) => {
     });
   });
 };
-
 export default socketService;
